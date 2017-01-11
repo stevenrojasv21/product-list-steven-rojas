@@ -53,7 +53,7 @@ class ProductController extends Controller {
         $title = $request->input('title');
         $description = $request->input('description');
         $language = $request->input('language');
-        DB::beginTransaction();
+        //DB::beginTransaction();
         try {
             if ($id === null) {
                 if (Product::where('product_code','=',$productCode)->first()) {
@@ -64,7 +64,7 @@ class ProductController extends Controller {
                     );
                     return response()->json("Product code $productCode already exists", $responsecode, $header, JSON_UNESCAPED_UNICODE);
                 }
-                $product = Product::firstOrCreate(['product_code' => $productCode]);
+                $product = Product::firstOrNew(['product_code' => $productCode]);
             } else {
                 $product = Product::firstOrNew(['id' => $id]);
             }
@@ -77,7 +77,7 @@ class ProductController extends Controller {
             $productLanguage->title = $title;
             $productLanguage->description = $description;
             $productLanguage->save();
-            DB::commit();
+            //DB::commit();
             $responsecode = 201;
             $header = array(
                 'Content-Type' => 'application/json; charset=UTF-8',
@@ -85,7 +85,7 @@ class ProductController extends Controller {
             );
             return response()->json('Successfully request', $responsecode, $header, JSON_UNESCAPED_UNICODE);
         } catch (\Exception $e) {
-            DB::rollback();
+            //DB::rollback();
             $responsecode = 400;
             $header = array(
                 'Content-Type' => 'application/json; charset=UTF-8',

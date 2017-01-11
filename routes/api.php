@@ -18,5 +18,5 @@ Route::resource('products', 'ProductController', ['except' => [
 ]]);
 
 Route::resource('languages', 'LanguageController', ['only' => [
-    'index', 'show'
+    'index', 'show', 'store'
 ]]);

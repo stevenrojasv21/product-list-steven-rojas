@@ -2,11 +2,14 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+//use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model as Model;
 
 class Language extends Model
 {
     //
-    protected $incrementing = false;
+    public $incrementing = false;
     protected $table = 'language';
+    protected $collection = 'language';
+    protected $fillable = ['id'];
 }
