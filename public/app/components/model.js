@@ -7,4 +7,13 @@ product
             id: "@id"
         });
     }
+])
+.factory("ProductService", [
+    "$resource",
+    "ROOT",
+    function ($resource, ROOT) {
+        return $resource(ROOT + "products/:id", {
+            id: "@id"
+        });
+    }
 ]);

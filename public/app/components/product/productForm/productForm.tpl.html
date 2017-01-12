@@ -1,16 +1,32 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title" translate>{{'ProductForm'}} </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <form>
+                                <div class="form-group">
+                                    <label for="title" translate>{{'codeProduct'}}</label>
+                                    <input ng-model="productCode" type="text" class="form-control" id="title" placeholder="{{'enterCodeProduct' | translate}}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="title" translate>{{'titleProduct'}}</label>
+                                    <input ng-model="title" type="text" class="form-control" id="title" placeholder="{{'enterTitleProduct' | translate}}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="description" translate>{{'descriptionProduct'}}</label>
+                                    <input ng-model="description" type="text" class="form-control" id="description" placeholder="{{'enterDescriptionProduct' | translate}}">
+                                </div>
+                                <button type="button" ng-click="save();" class="btn btn-default" translate>{{'saveButton'}}</button>
+                            </form>
+                        </div>
+                    </div>                     
+                </div>
+            </div>
+        </div>
+    </div>   
+</div>

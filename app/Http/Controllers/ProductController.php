@@ -56,7 +56,10 @@ class ProductController extends Controller {
         //DB::beginTransaction();
         try {
             if ($id === null) {
-                if (Product::where('product_code','=',$productCode)->first()) {
+                $product = Product::where('product_code','=',$productCode)->first();
+                $productLanguage = ProductLanguage::where('language_id','=', $language)
+                        ->where('product_id','=',$product->id)->first();
+                if ($product && $productLanguage) {
                     $responsecode = 400;
                     $header = array(
                         'Content-Type' => 'application/json; charset=UTF-8',
@@ -122,7 +125,8 @@ class ProductController extends Controller {
             'Content-Type' => 'application/json; charset=UTF-8',
             'charset' => 'utf-8'
         );
-        return response()->json(Product::find($id), $responsecode, $header, JSON_UNESCAPED_UNICODE);        
+        //return response()->json(Product::find($id), $responsecode, $header, JSON_UNESCAPED_UNICODE);
+        return response()->json(Product::where('product_code','=',$id)->first()->productLanguage, $responsecode, $header, JSON_UNESCAPED_UNICODE);
     }
 
     /**

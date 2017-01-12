@@ -36,6 +36,7 @@ and open the template in the editor.
     <script src="components/app.js"></script>
     <script src="components/model.js"></script>
     <script src="components/language/chooseLanguage/chooseLanguage.js"></script>
+    <script src="components/product/productForm/productForm.js"></script>
     <!--<script src="../js/app.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/app.css"/>-->
 </html>

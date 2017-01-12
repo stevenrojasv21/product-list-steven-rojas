@@ -1,5 +1,5 @@
 // Cambios de URL para direccionar las peticiones correctamente.
-var root = document.location.href.replace("/app/#!/","");
+var root = document.location.href.split('/app/#!/')[0]; //replace("/app/#!/","");
 
 var product = angular.module('Product', ['ngRoute', "ngResource", 'pascalprecht.translate', 'ngCookies'])
 .constant("ROOT", root+"/api/")
