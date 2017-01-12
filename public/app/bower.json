@@ -1,0 +1,31 @@
+{
+  "name": "Product List",
+  "homepage": "https://github.com/stevenrojasv21/product-list-steven-rojas",
+  "authors": [
+    "Steven <stevenrojasv21@gmail.com>"
+  ],
+  "description": "A multilingual app",
+  "main": "index.php",
+  "keywords": [
+    "multilingual",
+    "angular"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {},
+  "dependencies": {
+    "angular": "^1.6.1",
+    "bootstrap": "^3.3.7",
+    "angular-route": "^1.6.1",
+    "angular-resource": "^1.6.1",
+    "angular-ui-router": "^0.3.2",
+    "angular-ui": "^0.4.0"
+  }
+}

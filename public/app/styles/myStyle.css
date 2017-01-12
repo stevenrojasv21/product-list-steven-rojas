@@ -1,0 +1,22 @@
+body { 
+    padding-bottom: 70px; 
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-image: url(../img/bg1.jpg);    
+}
+
+.table > tbody > tr > td {
+    width: 50% !important;
+    background-color: #f9f9f9 !important;
+}
+
+.navbar-default .navbar-brand, .panel-default .panel-heading {
+    color: #fff;
+}
+
+.navbar-default, .panel, .panel-heading {
+        background-color: rgba(56, 117, 189, 0.45) !important;
+        border-color: rgba(56, 117, 189, 0.45) !important;
+}

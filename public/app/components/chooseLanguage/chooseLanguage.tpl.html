@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Language</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <select ng-model="select_language" id="select_language" name="select_language" class="form-control" 
+                                    ng-options="language.name for language in languages" ng-change='' required>                                        
+                            </select>
+                        </div>
+                    </div>   
+                     <div class="row">
+                         <div class="col-xs-12">
+                             &nbsp;
+                         </div>
+                     </div>
+                    <!--<div class="row" ng-if='information'>
+                        <div class="col-xs-12">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td>Temp: </td>
+                                    <td>{{information.main.temp}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Humedad</td>
+                                    <td>{{information.main.humidity}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Temp. Min</td>
+                                    <td>{{information.main.temp_min}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Temp. Máx</td>
+                                    <td>{{information.main.temp_max}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>   
+</div>
