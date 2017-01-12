@@ -10,20 +10,38 @@ var translationsEN = {
   saveButton: 'Save',
   cancelButton: 'Cancel',
   codeProduct: 'Product Code',
-  enterCodeProduct: 'Enter the product code'
+  enterCodeProduct: 'Enter the product code',
+  successMessage: 'Success',
+  errorMessage: 'Error',
+  deleteButton: 'Delete',
+  editButton: 'Edit',
+  deleteMessage: 'Do you want to delete this product?',
+  Create: 'Create',
+  Back: 'Back',
+  changeLanguage: 'Change Language',
+  listProducts: 'Go to List Products'
 };
- 
-var translationsDE= {
-  Language: 'Langua',
-  Product: 'Producto',
-  Save: 'Saves',
-  ProductForm: "Product's form",
-  titleProduct: "Title",
-  enterTitleProduct: 'Enter the product title',
-  descriptionProduct: 'Description',
-  enterDescriptionProduct: 'Enter the product title',
-  saveButton: 'Save',
-  cancelButton: 'Cancel',
-  codeProduct: 'Product Code',
-  enterCodeProduct: 'Enter the product code'
+
+var translationsFR= {
+   Language: 'Langue',
+   Product: 'Produit',
+   Save: 'Enregistrer',
+   ProductForm: "Formulaire du produit",
+   titleProduct: "Titre",
+   enterTitleProduct: 'Entrez le titre du produit',
+   descriptionProduit: 'Description',
+   enterDescriptionProduct: 'Entrez le titre du produit',
+   saveButton: 'Enregistrer',
+   cancelButton: 'Annuler',
+   codeProduct: 'Code Produit',
+   enterCodeProduct: 'Entrez le code du produit',
+   successMessage: 'Succès',
+   errorMessage: 'Erreur',
+   deleteButton: 'Supprimer',
+   editButton: 'Modifier',
+   deleteMessage: 'Voulez-vous supprimer ce produit?',
+   Create: 'Créer',
+   Back: 'Retour',
+   changeLanguage: 'Changement Langue',
+   listProducts: 'Aller à la liste des produits'
 };

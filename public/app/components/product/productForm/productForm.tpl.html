@@ -8,20 +8,21 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-xs-12">
-                            <form>
+                            <form id="formProduct" name="formProduct">
                                 <div class="form-group">
                                     <label for="title" translate>{{'codeProduct'}}</label>
-                                    <input ng-model="productCode" type="text" class="form-control" id="title" placeholder="{{'enterCodeProduct' | translate}}">
+                                    <input ng-model="product.product_code" type="text" class="form-control" id="title" placeholder="{{'enterCodeProduct' | translate}}">
                                 </div>
                                 <div class="form-group">
                                     <label for="title" translate>{{'titleProduct'}}</label>
-                                    <input ng-model="title" type="text" class="form-control" id="title" placeholder="{{'enterTitleProduct' | translate}}">
+                                    <input ng-model="product.title" type="text" class="form-control" id="title" placeholder="{{'enterTitleProduct' | translate}}">
                                 </div>
                                 <div class="form-group">
                                     <label for="description" translate>{{'descriptionProduct'}}</label>
-                                    <input ng-model="description" type="text" class="form-control" id="description" placeholder="{{'enterDescriptionProduct' | translate}}">
+                                    <input ng-model="product.description" type="text" class="form-control" id="description" placeholder="{{'enterDescriptionProduct' | translate}}">
                                 </div>
-                                <button type="button" ng-click="save();" class="btn btn-default" translate>{{'saveButton'}}</button>
+                                <button type="button" ng-click="save();" class="btn btn-primary" translate>{{'saveButton'}}</button>
+                                <a type="button" href="#!/products" class="btn btn-info" translate>{{'Back'}}</a>
                             </form>
                         </div>
                     </div>                     

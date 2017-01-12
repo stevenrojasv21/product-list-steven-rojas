@@ -15,14 +15,25 @@ class ProductController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index(Request $request) {
         //
         $responsecode = 200;
         $header = array(
             'Content-Type' => 'application/json; charset=UTF-8',
             'charset' => 'utf-8'
         );
-        return response()->json(Product::all(), $responsecode, $header, JSON_UNESCAPED_UNICODE);
+        $language = ($request->input('language'))? $request->input('language'):'en';
+        $products = Product::all();
+        foreach ($products as $key => &$product) {
+            $product->information = ProductLanguage::where('language_id','=', $language)
+                                    ->where('product_id','=',$product->id)->first();
+            if (!$product->information) {
+                unset($products[$key]);
+            }
+        }
+        unset($product);    
+        
+        return response()->json($products, $responsecode, $header, JSON_UNESCAPED_UNICODE);
     }
 
     /**
@@ -54,11 +65,13 @@ class ProductController extends Controller {
         $description = $request->input('description');
         $language = $request->input('language');
         //DB::beginTransaction();
+        
         try {
             if ($id === null) {
                 $product = Product::where('product_code','=',$productCode)->first();
-                $productLanguage = ProductLanguage::where('language_id','=', $language)
-                        ->where('product_id','=',$product->id)->first();
+                $idProduct = (isset($product->id))? $product->id: '0';
+                $productLanguage = ProductLanguage::where('product_id','=',$idProduct)->where('language_id','=', $language)->first();
+                
                 if ($product && $productLanguage) {
                     $responsecode = 400;
                     $header = array(
@@ -69,7 +82,7 @@ class ProductController extends Controller {
                 }
                 $product = Product::firstOrNew(['product_code' => $productCode]);
             } else {
-                $product = Product::firstOrNew(['id' => $id]);
+                $product = Product::firstOrNew(['product_code' => $id]);
             }
 
             $product->product_code = $productCode;
@@ -110,7 +123,7 @@ class ProductController extends Controller {
         $validator = Validator::make(array('id' => $id), [
                     'id' => 'bail|integer|required',
         ]);
-        
+        $language = ($request->input('language'))? $request->input('language'):'en';
         if ($validator->fails()) {
             $responsecode = 400;
             $header = array(
@@ -126,7 +139,17 @@ class ProductController extends Controller {
             'charset' => 'utf-8'
         );
         //return response()->json(Product::find($id), $responsecode, $header, JSON_UNESCAPED_UNICODE);
-        return response()->json(Product::where('product_code','=',$id)->first()->productLanguage, $responsecode, $header, JSON_UNESCAPED_UNICODE);
+        $product = Product::where('product_code','=',$id)->first();//->productLanguage;
+        $productLanguage = ProductLanguage::where('language_id','=', $language)
+                            ->where('product_id','=',$product->id)->first();
+        $product->information = $productLanguage;
+        if (!$product->information) {
+            $product = null;
+        }
+        $product->title = $product->information->title;
+        $product->description = $product->information->description;
+        return response()->json( $product , $responsecode, $header, JSON_UNESCAPED_UNICODE);
+        //return response()->json(Product::where('_id','=',$id)->first(), $responsecode, $header, JSON_UNESCAPED_UNICODE);
     }
 
     /**
@@ -149,12 +172,12 @@ class ProductController extends Controller {
      */
     public function destroy($id) {
         //
-        DB::beginTransaction();
+        //DB::beginTransaction();
         try {            
-            $product = Product::find($id);
+            $product = Product::where('product_code','=',$id)->first(); //Product::find($id);
             $productsLanguages = ProductLanguage::where('product_id','=',$product->id)->delete();
             $product->delete();
-            DB::commit();
+            //DB::commit();
             $responsecode = 200;
             $header = array(
                 'Content-Type' => 'application/json; charset=UTF-8',
@@ -162,7 +185,7 @@ class ProductController extends Controller {
             );
             return response()->json('Successfully deleted', $responsecode, $header, JSON_UNESCAPED_UNICODE);        
         } catch (\Exception $e) {
-            DB::rollback();
+            //DB::rollback();
             $responsecode = 400;
             $header = array(
                 'Content-Type' => 'application/json; charset=UTF-8',

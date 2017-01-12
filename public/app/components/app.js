@@ -7,8 +7,7 @@ var product = angular.module('Product', ['ngRoute', "ngResource", 'pascalprecht.
 
 product.config(['$translateProvider', function ($translateProvider) {
   $translateProvider.translations('en', translationsEN);
- 
-  $translateProvider.translations('de', translationsDE);
+  $translateProvider.translations('fr', translationsFR);
  
   $translateProvider.preferredLanguage('en');
   $translateProvider.fallbackLanguage('en');

@@ -16,7 +16,7 @@ and open the template in the editor.
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#!/">Product's App</a>
-                </div>               
+                </div>   
             </div>
         </nav>
         <div id="main">
@@ -37,6 +37,7 @@ and open the template in the editor.
     <script src="components/model.js"></script>
     <script src="components/language/chooseLanguage/chooseLanguage.js"></script>
     <script src="components/product/productForm/productForm.js"></script>
+    <script src="components/product/productList/ProductList.js"></script>
     <!--<script src="../js/app.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/app.css"/>-->
 </html>

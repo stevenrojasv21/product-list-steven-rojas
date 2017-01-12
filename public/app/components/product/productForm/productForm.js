@@ -1,42 +1,86 @@
 product
 .config(function ($routeProvider) {
     $routeProvider
-        .when('/product', {
+        .when('/product/:id?', {
             templateUrl: 'components/product/productForm/productForm.tpl.html'            
             ,resolve: {
-                $b: ["$q", "LanguageService",
-                function ($q, LanguageService) {
+                $b: ["$q", "$route", "$translate", "ProductService",
+                function ($q, $route, $translate, ProductService) {
+                    var productPromise = {};
+                    if ($route.current.params.id) {
+                        $route.current.params.language = $translate.use();
+                        productPromise = ProductService.get($route.current.params).$promise;
+                    }
                     return $q.all({
-                        languages: LanguageService.query().$promise
+                        product: productPromise
                     });
                 }]
             }
             ,controller: 'ProductFormCtrl'
         })
         .otherwise({
-                redirectTo: '/whatever'
+                //redirectTo: '/whatever'
         });
     }
 )      
-.controller("ProductFormCtrl", ['$scope','$http', '$q', '$location', '$translate' ,'$b', 'ProductService', ProductFormCtrl]);
+.controller("ProductFormCtrl", ['$scope', '$routeParams', '$http', '$q', '$location', '$translate' ,'$b', 'ProductService', ProductFormCtrl]);
 
-function ProductFormCtrl($scope, $http, $q, $location, $translate, $b, ProductService)
+function ProductFormCtrl($scope, $routeParams, $http, $q, $location, $translate, $b, ProductService)
 {
-    //angular.extend($scope, $b);
-    //$scope.languages = LanguageService.query().$promise;
-    //$scope.languages.then(function (data) {$scope.languages= data;});
+    angular.extend($scope, $b);
+    //$scope.product = ProductService.get($routeParams).$promise;
+    //$scope.product.then(function (data) {$scope.product = data;});
     //Methods
     //$scope.select_language = $translate.use();
     
     $scope.save = function () {
-        $scope.product = new ProductService();
-        $scope.product.product_code = $scope.productCode;
-        $scope.product.title = $scope.title;
-        $scope.product.description = $scope.description;
+        
+        var product = $scope.product;
+        var productSave = new ProductService(product);
         $scope.product.language = $translate.use();
-        ProductService.save($scope.product, function(data) {
-            console.log(data);
-        });
+        
+        if (product._id) {
+            $scope.product.id = $scope.product.product_code;
+            ProductService.update($scope.product,
+                    function (data) {
+                        $translate('successMessage').then(function (data) {
+                            alert(data);
+                            //document.getElementById("formProduct").reset();
+                        }
+                        );
+
+                    },
+                    function (data) {
+                        $translate('errorMessage').then(function (data) {
+                            alert(data);
+                        }
+                        );
+                    }
+            );
+        } else {
+            ProductService.save($scope.product,
+                    function (data) {
+                        $translate('successMessage').then(function (data) {
+                            alert(data);
+                            document.getElementById("formProduct").reset();
+                        }
+                        );
+
+                    },
+                    function (data) {
+                        $translate('errorMessage').then(function (data) {
+                            alert(data);
+                        }
+                        );
+                    }
+            );
+        }
+        
+//        $scope.product.product_code = $scope.productCode;
+//        $scope.product.title = $scope.title;
+//        $scope.product.description = $scope.description;
+//        $scope.product.language = $translate.use();
+        
         
     };
     

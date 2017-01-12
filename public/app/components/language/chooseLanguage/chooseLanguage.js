@@ -14,7 +14,7 @@ product
             ,controller: 'ChooseLanguageCtrl'
         })
         .otherwise({
-                redirectTo: '/whatever'
+                //redirectTo: '/whatever'
         });
     }
 )      
