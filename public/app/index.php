@@ -23,7 +23,7 @@ and open the template in the editor.
             <div ng-view>                
             </div>
         </div>
-    </body>
+    </body>    
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-route/angular-route.min.js"></script>
     <script src="bower_components/angular-resource/angular-resource.min.js"></script>

@@ -10,12 +10,35 @@ product
                         languages: LanguageService.query().$promise
                     });
                 }]
-        }
+            }
             ,controller: 'ChooseLanguageCtrl'
         })
         .otherwise({
                 //redirectTo: '/whatever'
         });
+        
+        /*$stateProvider
+        .state('products',{
+            url: '/products',
+            views: {
+                'language': {
+                    templateUrl: 'components/language/chooseLanguage/chooseLanguage.tpl.html'
+              ,resolve: {
+                $b: ["$q", "LanguageService",
+                function ($q, LanguageService) {
+                    return $q.all({
+                        languages: LanguageService.query().$promise
+                    });
+                }]
+            },
+              controller: ChooseLanguageCtrl
+            } 
+                }
+                         
+            }
+              
+        );*/
+        
     }
 )      
 .controller("ChooseLanguageCtrl", ['$scope','$http', '$q', '$location', '$translate' ,'$b', 'LanguageService', ChooseLanguageCtrl]);
