@@ -27,13 +27,15 @@ and open the template in the editor.
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-route/angular-route.min.js"></script>
     <script src="bower_components/angular-resource/angular-resource.min.js"></script>
-    <script src="bower_components/angular-ui/build/angular-ui.min.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.js"></script>    
+    <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js"></script> 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="components/languages.js"></script>
     <script src="components/app.js"></script>
     <script src="components/model.js"></script>
-    <script src="components/chooseLanguage/chooseLanguage.js"></script>
+    <script src="components/language/chooseLanguage/chooseLanguage.js"></script>
     <!--<script src="../js/app.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/app.css"/>-->
 </html>

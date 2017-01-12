@@ -2,7 +2,7 @@ product
 .config(function ($routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: 'components/chooseLanguage/chooseLanguage.tpl.html'            
+            templateUrl: 'components/language/chooseLanguage/chooseLanguage.tpl.html'            
             ,resolve: {
                 $b: ["$q", "LanguageService",
                 function ($q, LanguageService) {
@@ -18,20 +18,19 @@ product
         });
     }
 )      
-.controller("ChooseLanguageCtrl", ['$scope','$http', '$q', '$location', '$b', 'LanguageService', ChooseLanguageCtrl]);
+.controller("ChooseLanguageCtrl", ['$scope','$http', '$q', '$location', '$translate' ,'$b', 'LanguageService', ChooseLanguageCtrl]);
 
-function ChooseLanguageCtrl($scope, $http, $q, $location, $b, LanguageService)
+function ChooseLanguageCtrl($scope, $http, $q, $location, $translate, $b, LanguageService)
 {
     angular.extend($scope, $b);
     //$scope.languages = LanguageService.query().$promise;
     //$scope.languages.then(function (data) {$scope.languages= data;});
     //Methods
+    $scope.select_language = $translate.use();
     
-    $scope.getCityWeather = function () {
-        var data = LanguageService.get({city: $scope.select_city}).$promise;
-        data.then(function(data) {
-            $scope.information = data;
-        });
+    $scope.changeLanguage = function () {
+        var language = $scope.select_language;
+        $translate.use(language);
     };
 }
 ;
