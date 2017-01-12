@@ -2,27 +2,29 @@ product
 .config(function ($routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: 'components/chooseLanguage/chooseLanguage.tpl.html'
-            ,controller: 'ChooseLanguageCtrl'
+            templateUrl: 'components/chooseLanguage/chooseLanguage.tpl.html'            
             ,resolve: {
-                LanguageService: 'LanguageService',
-                languages: function(LanguageService){
-                    // This line is updated to return the promise
-                    //return LanguageService.query().$promise;
-                }
-            }
+                $b: ["$q", "LanguageService",
+                function ($q, LanguageService) {
+                    return $q.all({
+                        languages: LanguageService.query().$promise
+                    });
+                }]
+        }
+            ,controller: 'ChooseLanguageCtrl'
         })
         .otherwise({
                 redirectTo: '/whatever'
         });
     }
 )      
-.controller("ChooseLanguageCtrl", ['$scope','$http', '$q', '$location', 'LanguageService', ChooseLanguageCtrl]);
+.controller("ChooseLanguageCtrl", ['$scope','$http', '$q', '$location', '$b', 'LanguageService', ChooseLanguageCtrl]);
 
-function ChooseLanguageCtrl($scope, $http, $q, $location, LanguageService)
+function ChooseLanguageCtrl($scope, $http, $q, $location, $b, LanguageService)
 {
-    $scope.languages = LanguageService.query().$promise;
-    $scope.languages.then(function (data) {$scope.languages= data;});
+    angular.extend($scope, $b);
+    //$scope.languages = LanguageService.query().$promise;
+    //$scope.languages.then(function (data) {$scope.languages= data;});
     //Methods
     
     $scope.getCityWeather = function () {
